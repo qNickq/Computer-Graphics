@@ -126,11 +126,6 @@ namespace Lab_1
                                 }
                         }
                         points.Add(p);
-
-                    }
-                    else
-                    {
-                        continue;
                     }
                 }
             }
