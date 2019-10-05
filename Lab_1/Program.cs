@@ -18,7 +18,8 @@ namespace Lab_1
         static public int count = 0;
         public Point()
         {
-            Number = 0;
+            count++;
+            Number = count;
             Square = 0;
             Type = eTypeOfPoint.None;
         }
@@ -50,7 +51,6 @@ namespace Lab_1
             {
                 Console.WriteLine(point);
             }
-
         }
         static int[,] ParseMap(string path, int width, int height)
         {
@@ -96,9 +96,6 @@ namespace Lab_1
                         p = new Point();
 
                         p.Square = SearchPath(ref field, i, j);
-
-                        Point.count++;
-                        p.Number = Point.count;
 
                         switch (p.Square)
                         {
