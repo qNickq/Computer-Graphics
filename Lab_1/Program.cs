@@ -52,7 +52,7 @@ namespace Lab_1
                 Console.WriteLine(point);
             }
         }
-        static int[,] ParseMap(string path, int width, int height)
+        public static int[,] ParseMap(string path, int width, int height)
         {
             int[,] field = new int[width, height];
        
@@ -61,7 +61,9 @@ namespace Lab_1
                 using (StreamReader br = new StreamReader(path))
                 {
                     string temp;
+
                     int j = 0;
+
                     while ((temp = br.ReadLine()) != null)
                     {
                         for (int i = 0; i < temp.Length; i++)
@@ -80,12 +82,10 @@ namespace Lab_1
             return field;
 
         }
-        static public List<Point> SearchPoints(int[,] field)
+        public static List<Point> SearchPoints(int[,] field)
         {
 
             List<Point> points = new List<Point>();
-
-            Point p;
 
             for (int i = 0; i < field.GetLength(0); i++)
             {
@@ -93,10 +93,8 @@ namespace Lab_1
                 {
                     if (field[i, j] == 1)
                     {
-                        p = new Point();
-
-                        p.Square = SearchPath(ref field, i, j);
-
+                        Point p = new Point { Square = SearchPath(ref field, i, j) };
+                        
                         switch (p.Square)
                         {
                             case 0:
@@ -128,11 +126,11 @@ namespace Lab_1
             }
             return points;
         }
-        static public int SearchPath(ref int[,] field, int x, int y)
+        public static int SearchPath(ref int[,] field, int x, int y)
         {
             int count = 0;
 
-            if (x >= 0 && y >= 0 && x < field.GetLength(0) && y < field.GetLength(1) && field[x,y] == 1)
+            if ( x >= 0 && y >= 0 && x < field.GetLength(0) && y < field.GetLength(1) && field[x,y] == 1)
             {
                 
                 field[x, y] = 2;
@@ -141,6 +139,7 @@ namespace Lab_1
                 count += SearchPath(ref field, x - 1, y);
                 count += SearchPath(ref field, x, y + 1);
                 count += SearchPath(ref field, x, y - 1);
+
                 count++;
             }
             else
