@@ -15,7 +15,7 @@ namespace Lab_1
     }
     class Point
     {
-        static public int count = 0;
+        private static int count = 0;
         public Point()
         {
             count++;
